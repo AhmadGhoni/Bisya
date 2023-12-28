@@ -13,12 +13,10 @@ import dev.ghoni.bisya.ui.component.BottomBar
 import dev.ghoni.bisya.ui.navigation.BottomNavItem
 import dev.ghoni.bisya.ui.screen.ExtScreen
 import dev.ghoni.bisya.ui.screen.HomeScreen
-import dev.ghoni.bisya.ui.screen.camera.CameraScreen
-import dev.ghoni.bisya.ui.screen.camera.CameraViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun BisyaApp(modifier: Modifier = Modifier, navController : NavController, cameraViewModel: CameraViewModel) {
+fun BisyaApp(modifier: Modifier = Modifier, navController : NavController) {
     val (currentScreen, setCurrentScreen) = remember { mutableStateOf(BottomNavItem.Home) }
     Scaffold(
         bottomBar = {
@@ -35,13 +33,13 @@ fun BisyaApp(modifier: Modifier = Modifier, navController : NavController, camer
         ) {
             when (currentScreen) {
                 BottomNavItem.Home -> {
-                    HomeScreen(title = "Home")
+                    HomeScreen(title = "Home", navController = navController)
                 }
                 BottomNavItem.Ext ->{
                     ExtScreen(title = "Extensions")
                 }
                 BottomNavItem.Profile-> {
-                    CameraScreen(viewModel = cameraViewModel)
+                    TODO()
                 }
             }
         }

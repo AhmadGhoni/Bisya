@@ -9,7 +9,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
-import dev.ghoni.bisya.ui.screen.camera.CameraScreen
+import dev.ghoni.bisya.ui.navigation.AppNavigation
 import dev.ghoni.bisya.ui.screen.camera.CameraViewModel
 import dev.ghoni.bisya.ui.theme.BisyaTheme
 
@@ -25,7 +25,7 @@ class MainActivity : ComponentActivity() {
                 ) {
                     val navController = rememberNavController()
                     val cameraViewModel: CameraViewModel by viewModels()
-                    CameraScreen(viewModel = cameraViewModel)
+                    AppNavigation(navController = navController, cameraViewModel = cameraViewModel)
                 }
             }
         }
