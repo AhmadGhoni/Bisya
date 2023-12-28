@@ -117,7 +117,7 @@ private val IndicatorModifier = Modifier
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun ExtItemPreview() {
     BisyaTheme {
         ExtItem(
             item = ListItemData(

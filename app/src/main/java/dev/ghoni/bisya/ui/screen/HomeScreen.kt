@@ -20,7 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import dev.ghoni.bisya.R
 import dev.ghoni.bisya.ui.component.AppBar
-import dev.ghoni.bisya.ui.component.CameraButton
+import dev.ghoni.bisya.ui.component.HomeButton
 import dev.ghoni.bisya.ui.component.QuoteCard
 import dev.ghoni.bisya.ui.theme.BisyaTheme
 
@@ -55,7 +55,7 @@ fun HomeScreen(title : String,
                 val quoteText = stringResource(id = R.string.quote_home)
                 QuoteCard(quoteText = quoteText)
             }
-            CameraButton {
+            HomeButton {
 
             }
         }
