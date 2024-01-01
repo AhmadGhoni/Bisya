@@ -79,4 +79,7 @@ dependencies {
     implementation ("androidx.camera:camera-view:1.2.1")
     implementation ("io.coil-kt:coil-compose:1.3.2")
     implementation ("com.google.accompanist:accompanist-systemuicontroller:0.23.0")
+
+    implementation ("org.tensorflow:tensorflow-lite:2.4.0")
+    implementation ("org.tensorflow:tensorflow-lite-support:0.1.0")
 }
