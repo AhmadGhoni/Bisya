@@ -4,4 +4,11 @@
     <string name="txt_ext">Extensions</string>
     <string name="txt_profile">Profile</string>
     <string name="quote_home">Breaking barriers with every sign, let your screen speak the language of inclusion. Sign Language Translator: Connecting hearts, one gesture at a time.</string>
+    <string name="start_button">Start</string>
+    <string name="stop_button">Stop</string>
+    <string name="stop_record">Stop Record</string>
+    <string name="start_record">Start Record</string>
+    <string name="switch_camera_button">Switch Camera</string>
+    <string name="start">Start Button</string>
+    <string name="switch_camera">Switch Camera</string>
 </resources>

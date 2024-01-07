@@ -1,6 +1,7 @@
 package dev.ghoni.bisya.ui.component
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -22,7 +23,7 @@ import dev.ghoni.bisya.R
 import dev.ghoni.bisya.ui.theme.BisyaTheme
 
 @Composable
-fun CameraButton(modifier: Modifier = Modifier){
+fun CameraButton(abjad : String, onClick: () -> Unit, modifier: Modifier = Modifier){
     Row (
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
@@ -32,7 +33,7 @@ fun CameraButton(modifier: Modifier = Modifier){
             .height(70.dp)
     ){
         Text(
-            text ="A",
+            text = abjad,
             color = Color.White,
             style = MaterialTheme.typography.displayLarge,
             fontWeight = FontWeight.Bold,
@@ -47,7 +48,9 @@ fun CameraButton(modifier: Modifier = Modifier){
         Image(
             painter = painterResource(id = R.drawable.ic_switch_camera),
             contentDescription = null,
-            modifier = modifier.fillMaxHeight(0.5f),
+            modifier = modifier
+                .fillMaxHeight(0.5f)
+                .clickable { onClick() },
             contentScale = ContentScale.FillHeight
         )
     }
@@ -57,6 +60,6 @@ fun CameraButton(modifier: Modifier = Modifier){
 @Composable
 fun CameraButtonPreview() {
     BisyaTheme {
-        CameraButton()
+        CameraButton("B", {})
     }
 }

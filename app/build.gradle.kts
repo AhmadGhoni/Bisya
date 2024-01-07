@@ -52,6 +52,8 @@ android {
 }
 
 dependencies {
+    implementation (project(":rtspserver"))
+    implementation ("com.github.pedroSG94.RootEncoder:library:2.3.3")
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
@@ -71,6 +73,9 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
     implementation ("androidx.navigation:navigation-compose:2.4.0")
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation ("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.11")
     implementation ("com.google.code.gson:gson:2.9.0")
 
     implementation ("androidx.camera:camera-camera2:1.2.1")
@@ -80,6 +85,6 @@ dependencies {
     implementation ("io.coil-kt:coil-compose:1.3.2")
     implementation ("com.google.accompanist:accompanist-systemuicontroller:0.23.0")
 
-    implementation ("org.tensorflow:tensorflow-lite:2.4.0")
-    implementation ("org.tensorflow:tensorflow-lite-support:0.1.0")
+    implementation ("com.github.pedroSG94.RootEncoder:library:2.3.3")
+    implementation ("androidx.appcompat:appcompat:1.6.1")
 }

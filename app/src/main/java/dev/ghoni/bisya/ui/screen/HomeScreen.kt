@@ -18,20 +18,17 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import dev.ghoni.bisya.R
 import dev.ghoni.bisya.ui.component.AppBar
 import dev.ghoni.bisya.ui.component.HomeButton
 import dev.ghoni.bisya.ui.component.QuoteCard
-import dev.ghoni.bisya.ui.navigation.Screen
 import dev.ghoni.bisya.ui.theme.BisyaTheme
 
 @Composable
 fun HomeScreen(
     title : String,
     modifier: Modifier = Modifier,
-    navController: NavController
+    onClick: () -> Unit
 ) {
     Column {
         AppBar(title)
@@ -61,7 +58,7 @@ fun HomeScreen(
                 QuoteCard(quoteText = quoteText)
             }
             HomeButton {
-                navController.navigate(Screen.Camera.route)
+                onClick()
             }
         }
     }
@@ -71,6 +68,6 @@ fun HomeScreen(
 @Composable
 fun HomeScreenPreview() {
     BisyaTheme {
-        HomeScreen("Home", navController = rememberNavController())
+        HomeScreen("Home", onClick = {})
     }
 }
