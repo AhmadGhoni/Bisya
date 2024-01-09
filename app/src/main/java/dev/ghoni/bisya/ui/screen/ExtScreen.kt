@@ -19,9 +19,9 @@ fun ExtScreen(
     modifier: Modifier = Modifier
 ){
     val data = listOf(
-        ListItemData("Title 1", "Author 1", "1.0", DownloadState.NOT_DOWNLOADED),
-        ListItemData("Title 2", "Author 2", "2.0", DownloadState.NOT_DOWNLOADED),
-        ListItemData("Title 3", "Author 3", "3.0", DownloadState.NOT_DOWNLOADED)
+        ListItemData("SIBI Alfabet", "AhmadGhoni", "1.1", DownloadState.DOWNLOADED),
+        ListItemData("Bahasa Isyarat SIBI", "AhmadGhoni", "1.0", DownloadState.NOT_DOWNLOADED),
+        ListItemData("SIBI Translator", "AhmadGhoni", "1.0-Beta", DownloadState.NOT_DOWNLOADED)
     )
 
     Column(

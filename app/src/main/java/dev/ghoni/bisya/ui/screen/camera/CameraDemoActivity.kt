@@ -122,7 +122,7 @@ class CameraDemoActivity : AppCompatActivity(), ConnectChecker, View.OnClickList
         if (rtspServerCamera1.isRecording || rtspServerCamera1.prepareAudio() && rtspServerCamera1.prepareVideo()) {
           button.setColorFilter(ContextCompat.getColor(this, R.color.record), PorterDuff.Mode.SRC_IN)
           rtspServerCamera1.startStream()
-          tvUrl.text = rtspServerCamera1.streamClient.getEndPointConnection()
+          //tvUrl.text = rtspServerCamera1.streamClient.getEndPointConnection()
         } else {
           Toast.makeText(this, "Error preparing stream, This device cant do it", Toast.LENGTH_SHORT)
               .show()

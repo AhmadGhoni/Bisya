@@ -38,7 +38,7 @@ fun BisyaApp(modifier: Modifier = Modifier, onClick: () -> Unit) {
                     ExtScreen(title = "Extensions")
                 }
                 BottomNavItem.Profile-> {
-                    TODO()
+
                 }
             }
         }

@@ -1,6 +1,6 @@
 package dev.ghoni.bisya.core.api
 
-import dev.ghoni.bisya.BuildConfig
+import com.pedro.rtsp.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -18,7 +18,7 @@ class ApiConfig {
                 .addInterceptor(loggingInterceptor)
                 .build()
             val retrofit = Retrofit.Builder()
-                .baseUrl("http://192.168.5.31:5000/")
+                .baseUrl("http://192.168.129.123:5000/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()
