@@ -8,16 +8,18 @@ import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.core.app.ActivityCompat
 import dev.ghoni.bisya.ui.screen.camera.CameraDemoActivity
+import dev.ghoni.bisya.ui.screen.ext.ExtViewModel
 import dev.ghoni.bisya.ui.theme.BisyaTheme
 
 class MainActivity : ComponentActivity() {
-
+    private val viewModel: ExtViewModel by viewModels()
     private val permissions = arrayOf(Manifest.permission.RECORD_AUDIO, Manifest.permission.CAMERA)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +30,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    BisyaApp(onClick = {
+                    BisyaApp(extViewModel = viewModel,onClick = {
                         if (!hasPermissions(this, *permissions)) {
                             ActivityCompat.requestPermissions(this, permissions, 1)
                         } else {

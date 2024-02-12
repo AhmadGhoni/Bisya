@@ -2,7 +2,7 @@ package dev.ghoni.bisya.ui.component
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Home
-import androidx.compose.material.icons.outlined.Person
+import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -37,9 +37,9 @@ fun BottomBar(
                 screen = BottomNavItem.Ext
             ),
             BottomBarItem(
-                title = stringResource(id = R.string.txt_profile),
-                icon = Icons.Outlined.Person,
-                screen = BottomNavItem.Profile
+                title = stringResource(id = R.string.txt_settings),
+                icon = Icons.Outlined.Settings,
+                screen = BottomNavItem.Settings
             )
         )
         NavigationBar {

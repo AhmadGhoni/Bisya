@@ -10,12 +10,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import dev.ghoni.bisya.ui.component.BottomBar
 import dev.ghoni.bisya.ui.navigation.BottomNavItem
-import dev.ghoni.bisya.ui.screen.ExtScreen
 import dev.ghoni.bisya.ui.screen.HomeScreen
+import dev.ghoni.bisya.ui.screen.SettingsScreen
+import dev.ghoni.bisya.ui.screen.ext.ExtScreen
+import dev.ghoni.bisya.ui.screen.ext.ExtViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun BisyaApp(modifier: Modifier = Modifier, onClick: () -> Unit) {
+fun BisyaApp(modifier: Modifier = Modifier, onClick: () -> Unit, extViewModel: ExtViewModel) {
     val (currentScreen, setCurrentScreen) = remember { mutableStateOf(BottomNavItem.Home) }
     Scaffold(
         bottomBar = {
@@ -35,10 +37,10 @@ fun BisyaApp(modifier: Modifier = Modifier, onClick: () -> Unit) {
                     HomeScreen(title = "Home", onClick = onClick)
                 }
                 BottomNavItem.Ext ->{
-                    ExtScreen(title = "Extensions")
+                    ExtScreen(title = "Extensions", viewModel = extViewModel)
                 }
-                BottomNavItem.Profile-> {
-
+                BottomNavItem.Settings-> {
+                    SettingsScreen(title = "Settings", viewModel = extViewModel)
                 }
             }
         }

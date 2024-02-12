@@ -14,6 +14,9 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -23,10 +26,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import dev.ghoni.bisya.R
+import dev.ghoni.bisya.ui.screen.ext.ExtViewModel
 import dev.ghoni.bisya.ui.theme.BisyaTheme
 
 @Composable
-fun ExtItem(item: ListItemData, modifier: Modifier = Modifier, onClick: ()-> Unit) {
+fun ExtItem(
+    item: ListItemData,
+    modifier: Modifier = Modifier,
+    viewModel: ExtViewModel
+) {
+    val data by remember { viewModel.data }.collectAsState()
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
@@ -34,62 +43,67 @@ fun ExtItem(item: ListItemData, modifier: Modifier = Modifier, onClick: ()-> Uni
             .fillMaxWidth()
             .padding(10.dp)
     ) {
-        Column {
-            Text(
-                text = item.title,
-                style = MaterialTheme.typography.titleLarge,
-                fontWeight = FontWeight.Bold
-            )
-            Text(
-                text = "Created by: ${item.createdBy}",
-                style = MaterialTheme.typography.bodyMedium
-            )
-            Text(text = "Version: ${item.version}", style = MaterialTheme.typography.bodyMedium)
-        }
-        when (item.downloadState) {
-            DownloadState.NOT_DOWNLOADED -> {
-                Icon(
-                    imageVector = ImageVector.vectorResource(id = R.drawable.ic_download),
-                    contentDescription = null,
-                    tint = MaterialTheme.colorScheme.primary,
-                    modifier = modifier
-                        .size(IndicatorSize)
-                        .clickable {onClick()}
+        if (item.downloadState != DownloadState.DUMMY) {
+            Column {
+                Text(
+                    text = item.title,
+                    style = MaterialTheme.typography.titleLarge,
+                    fontWeight = FontWeight.Bold
                 )
+                Text(
+                    text = "Created by: ${item.createdBy}",
+                    style = MaterialTheme.typography.bodyMedium
+                )
+                Text(text = "Version: ${item.version}", style = MaterialTheme.typography.bodyMedium)
             }
-
-            DownloadState.DOWNLOADING -> {
-                Box(
-                    modifier = modifier.size(24.dp),
-                    contentAlignment = Alignment.Center
-                ) {
-                    CircularProgressIndicator(
-                        modifier = IndicatorModifier,
-                        color = MaterialTheme.colorScheme.primary,
-                        strokeWidth = IndicatorStrokeWidth
-                    )
+            when (item.downloadState) {
+                DownloadState.NOT_DOWNLOADED -> {
                     Icon(
-                        imageVector = ImageVector.vectorResource(id = R.drawable.ic_arrow_downward),
+                        imageVector = ImageVector.vectorResource(id = R.drawable.ic_download),
                         contentDescription = null,
                         tint = MaterialTheme.colorScheme.primary,
                         modifier = modifier
                             .size(IndicatorSize)
-                            .clickable{onClick()}
+                            .clickable { viewModel.startDownload(data.indexOf(item)) }
                     )
                 }
-            }
 
-            DownloadState.DOWNLOADED -> {
-                Button(onClick = onClick) {
-                    Text(
-                        "Uninstall",
-                        style = MaterialTheme.typography.bodyMedium,
-                        fontWeight = FontWeight.Bold,
-                        color = Color.White
-                    )
+                DownloadState.DOWNLOADING -> {
+                    Box(
+                        modifier = modifier.size(24.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        CircularProgressIndicator(
+                            modifier = IndicatorModifier,
+                            color = MaterialTheme.colorScheme.primary,
+                            strokeWidth = IndicatorStrokeWidth
+                        )
+                        Icon(
+                            imageVector = ImageVector.vectorResource(id = R.drawable.ic_arrow_downward),
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.primary,
+                            modifier = modifier
+                                .size(IndicatorSize)
+                                .clickable { viewModel.uninstall(data.indexOf(item)) }
+                        )
+                    }
                 }
+
+                DownloadState.DOWNLOADED -> {
+                    Button(onClick = {viewModel.uninstall(data.indexOf(item))}) {
+                        Text(
+                            "Uninstall",
+                            style = MaterialTheme.typography.bodyMedium,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.White
+                        )
+                    }
+                }
+
+                else -> {}
             }
         }
+
     }
 }
 
@@ -104,6 +118,7 @@ enum class DownloadState {
     NOT_DOWNLOADED,
     DOWNLOADING,
     DOWNLOADED,
+    DUMMY,
 }
 
 private val IndicatorSize = 26.dp
@@ -125,8 +140,7 @@ fun ExtItemPreview() {
                 createdBy = "AhmadGhoni",
                 version = "1.0.0",
                 downloadState = DownloadState.DOWNLOADED
-            ),
-            onClick = {}
+            ),Modifier, ExtViewModel()
         )
     }
 }

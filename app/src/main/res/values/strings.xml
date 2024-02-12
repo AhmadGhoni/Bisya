@@ -11,4 +11,5 @@
     <string name="switch_camera_button">Switch Camera</string>
     <string name="start">Start Button</string>
     <string name="switch_camera">Switch Camera</string>
+    <string name="txt_settings">Settings</string>
 </resources>

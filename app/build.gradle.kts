@@ -87,4 +87,5 @@ dependencies {
 
     implementation ("com.github.pedroSG94.RootEncoder:library:2.3.3")
     implementation ("androidx.appcompat:appcompat:1.6.1")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.4.0-alpha01")
 }
